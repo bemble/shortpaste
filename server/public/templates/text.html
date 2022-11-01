@@ -29,6 +29,7 @@
         <a href="/" style="color: inherit;text-decoration: inherit;">Short{Paste}</a>
     </h1>
     <h3 class="title" style="text-align: left;">Contents of {{ .ID }}</h3>
+    Click here to download: <a href="{{ .Src }}">"{{ .Name }}"</a> (Size: {{ .Size }})
     <pre>
         <code class="{{ .Class }}">{{ .Text }}</code>
     </pre>

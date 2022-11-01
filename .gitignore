@@ -1,2 +1,4 @@
 *.db
 static/
+data
+.vscode
