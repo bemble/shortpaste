@@ -84,7 +84,7 @@ func TextDelete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := os.RemoveAll(path.Join(config.GetDataDirPath(), "files", text.ID+"."+text.Type))
+	err := os.RemoveAll(path.Join(config.GetDataDirPath(), "texts", text.ID+"."+text.Type))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
