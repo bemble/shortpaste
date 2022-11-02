@@ -14,9 +14,13 @@ import (
 var db *gorm.DB
 var inited bool = false
 
+func Init() {
+	Get()
+}
+
 func Get() *gorm.DB {
 	if !isInited() {
-		log.Info("Initing database...")
+		log.WithField("category", "database").Info("Initing...")
 
 		dbUri := path.Join(config.GetDataDirPath(), "mapping.db")
 		ndb, err := gorm.Open(sqlite.Open(dbUri), &gorm.Config{})
@@ -39,7 +43,7 @@ func isInited() bool {
 }
 
 func migrate() {
-	log.Info("Migrating database...")
+	log.WithField("category", "database").Info("Migrating...")
 	db.AutoMigrate(&Link{})
 	db.AutoMigrate(&File{})
 	db.AutoMigrate(&Text{})

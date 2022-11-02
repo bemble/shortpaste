@@ -55,9 +55,9 @@ func FileAdd(w http.ResponseWriter, r *http.Request) {
 	file.Name = handler.Filename
 	file.MIME = handler.Header["Content-Type"][0]
 
-	log.Printf("Uploaded File: %+v\n", file.Name)
-	log.Printf("File Size: %+v\n", handler.Size)
-	log.Printf("MIME Header: %+v\n", file.MIME)
+	log.WithField("category", "file-upload").Info("Uploaded File: %+v\n", file.Name)
+	log.WithField("category", "file-upload").Info("File Size: %+v\n", handler.Size)
+	log.WithField("category", "file-upload").Info("MIME Header: %+v\n", file.MIME)
 
 	filePath := path.Join(config.GetDataDirPath(), "files", file.ID, file.Name)
 

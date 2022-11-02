@@ -1,0 +1,40 @@
+{
+  "menu": {
+    "links": "Links",
+    "texts": "Texts",
+    "files": "Files"
+  },
+  "titles": {
+    "links": "Links",
+    "texts": "Texts",
+    "files": "Files"
+  },
+  "links": {
+    "add_placeholder": "Enter a URL to shorten",
+    "add_aria_label": "shorten a new URL",
+    "add_button_aria_label": "add",
+    "copy_button_aria_label": "copy shorten URL",
+    "delete_button_aria_label": "delete",
+    "open_original": "open original link",
+    "copy_message": "Shorten URL copied to clipboard"
+  },
+  "texts": {
+    "add_placeholder": "Enter your text",
+    "add_aria_label": "add a text",
+    "add_button_aria_label": "add",
+    "copy_button_aria_label": "copy link to the text",
+    "delete_button_aria_label": "delete",
+    "copy_message": "Link to text copied to clipboard"
+  },
+  "files": {
+    "add_placeholder": "Select your file",
+    "add_button_aria_label": "upload",
+    "copy_button_aria_label": "copy link to the file",
+    "delete_button_aria_label": "delete",
+    "copy_message": "Link to the file copied to clipboard"
+  },
+  "actions": {
+    "filter": "Filter",
+    "clear_filter_label": "clear filters"
+  }
+}

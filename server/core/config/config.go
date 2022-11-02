@@ -22,3 +22,8 @@ func GetTemplatesDirPath() string {
 	dir, _ := GetAppDirPath()
 	return filepath.Clean(fmt.Sprintf(`%s/templates`, dir))
 }
+
+func GetPublicDir() string {
+	dir, _ := GetAppDirPath()
+	return filepath.Clean(fmt.Sprintf(`%s/public`, dir))
+}

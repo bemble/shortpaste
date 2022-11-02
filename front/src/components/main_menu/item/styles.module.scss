@@ -1,0 +1,84 @@
+@import "src/theme/theme";
+
+.root {
+  width: 100%;
+  padding: spacing(0.75, 1);
+
+  display: flex;
+  align-items: center;
+  border-radius: $border-radius;
+
+  background: transparent;
+  text-decoration: none;
+  color: $gray-300;
+
+  > svg {
+    width: 24px;
+    height: 24px;
+    margin-right: spacing(0.25);
+
+    will-change: fill;
+    transition: all 250ms ease-in-out;
+    fill: $gray-300;
+  }
+
+  &:not(.active):hover {
+    cursor: pointer;
+    color: $gray-500;
+
+    > svg {
+      fill: $gray-500;
+    }
+  }
+
+  &.active {
+    &.purple {
+      color: $purple-400;
+      & > svg {
+        fill: $purple-400;
+      }
+    }
+  
+    &.pink {
+      color: $pink-400;
+      & > svg {
+        fill: $pink-400;
+      }
+    }
+  
+    &.green {
+      color: $green-400;
+      & > svg { 
+        fill: $green-400;
+      }
+    }
+  
+    &.blue {
+      color: $blue-400;
+      & > svg {
+        fill: $blue-400;
+      }
+    }
+  
+    &.red {
+      color: $red-400;
+      & > svg {
+        fill: $red-400;
+      }
+    }
+  
+    &.yellow {
+      color: $yellow-400;
+      & > * {
+        fill: $yellow-400;
+      }
+    }
+  
+    &.orange {
+      color: $orange-400;
+      & > svg {
+        fill: $orange-400;
+      }
+    }
+  }
+}

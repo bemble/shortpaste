@@ -1,60 +1,141 @@
 # Short{Paste}
 
-[![Drone Build Status](https://drone.adyanth.site/api/badges/adyanth/shortpaste/status.svg)](https://drone.adyanth.site/adyanth/shortpaste)
-[![Docker pulls](https://img.shields.io/docker/pulls/adyanth/shortpaste.svg)](https://hub.docker.com/r/adyanth/shortpaste)
-[![Docker Compose](https://img.shields.io/badge/Compose-docker--compose.yml-blue)](https://git.adyanth.site/DockerComposeApps/shortpaste/src/branch/main/docker-compose.yml)
-[![Go Report](https://goreportcard.com/badge/git.adyanth.site/adyanth/shortpaste)](https://goreportcard.com/report/git.adyanth.site/adyanth/shortpaste)
-[![Demo on Heroku](https://img.shields.io/badge/Demo-Heroku-7056bf)](https://shortpaste.herokuapp.com/)
+[![gh_last_release_svg]][gh_last_release_url]
+[![tippin_svg]][tippin_url]
 
-`Short{Paste}` is open-source software written in Go and VueJS. It is a minimalistic shortener that combines three things that need shortening: links, files, and text. It is a self-hosted alternative to many popular services like paste bin and using dropbox to send a file to someone quickly.
+[gh_last_release_svg]: https://img.shields.io/github/v/release/bemble/shortpaste?sort=semver
+[gh_last_release_url]: https://github.com/bemble/shortpaste/releases/latest
 
-The Go backend handles saving files, links, and text in DB and filesystem as needed, while the Vue UI provides a pretty view for you to add and review content. Added bonus, it tracks hit counts too!
+[tippin_svg]: https://img.shields.io/badge/donate-BuyMeACoffee-ffdd00?logo=buymeacoffee&style=flat
+[tippin_url]: https://www.buymeacoffee.com/bemble
 
-## Deployment
+> A lightweight personnal URL shortener, pastebin and file uploader.
 
-The whole backend packages to a single binary, and I bundled the app as a docker container based on `alpine` favored for its tiny size. To run this yourself, execute the command below.
+Short{Paste} is open-source software written in Go and React. It is a minimalistic shortener that combines three things that need shortening: links, files, and text. It is a self-hosted alternative to many popular services like bitly, paste bin and using dropbox to send a file to someone quickly.
+
+The Go backend handles saving files, links, and text in DB and filesystem as needed, while the React UI provides a pretty view for you to add and review content. Added bonus, it tracks hit counts too!
+
+## Running
+
+### Docker
 
 ```bash
-docker run -d \
-    -p 8080:8080 \
-    -v ${PWD}/shortpaste/:/root/.shortpaste \
-    adyanth/shortpaste:latest
+docker run -v "${pwd}/shortpaste/data:/app/data" -p8080:8080 --env-file "${pwd}/shortpaste/.env" ghcr.io/bemble/shortpaste:latest 
 ```
 
-The command will publish the application on port `8080`, making it available on `http://localhost:8080/` and use the bind-mounted folder called `shortpaste` in your current working directory to save the SQLite DB, the files, and texts published.
+### Docker compose
 
-If you prefer docker-compose, here is an [example deployment](https://git.adyanth.site/DockerComposeApps/shortpaste).
-
-## Build it yourself
-
-With docker, you can build this yourself. A `Dockerfile` is provided at the root of this repository.
-
-It uses a multi-stage build consisting of three stages:
-
-- Go Build  : Builds a statically linked Go binary containing the backend API server and the static server.
-- Vue Build : Builds the VueJS UI to generate a `dist` folder with resources.
-- Container : Alpine container where the binary and `dist` are copied and served.
+```yml
+  shortpaste:
+    image: ghcr.io/bemble/shortpaste:latest 
+    container_name: holerr
+    restart: unless-stopped
+    ports:
+      - ${PORT_SHORTPASTE}:8080
+    env_file:
+      - "${PWD}/shortpaste/.env"
+    volumes:
+      - "${PWD}/shortpaste/data:/app/data"
+      - /usr/share/zoneinfo:/usr/share/zoneinfo:ro
+      - /etc/localtime:/etc/localtime:ro
+```
 
 ## Environment Variables
 
-You can customize the behavior using environment variables. Here is a list of configurable parameters.
+You can customize the behavior using environment variables:.
 
 | Environment Variable | Default Value     | Behaviour                                                                                                          |
 | -------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `SP_BIND_ADDR`       | `":8080"`         | Sets the bind-address inside the container.                                                                        |
-| `PORT`               |                   | If set, it overrides the `SP_BIND_ADDR` to use the given port on all interfaces (support for Heroku deployment)    |
-| `SP_STORAGE_PATH`    | `"~/.shortpaste"` | Sets the location for saving data inside the container.                                                            |
-| `SP_307_REDIRECT`    |                   | Setting this to anything causes a 307 redirect to be sent instead of showing the landing page for shortened links. |
-| `SP_USERNAME`        | `admin`           | Sets the username to login to the UI (only applies to creating resources, links will still work fine)              |
-| `SP_PASSWORD`        | `admin`           | Sets the password to login to the UI (only applies to creating resources, links will still work fine)              |
-| `SP_NOAUTH`          |                   | Setting this to anything bypasses authentication for creating resources.                                           |
+| `API_KEY`            | `CHANGE-IT-ASAP`  | API key used to communicate with the API.                                                                          |
+| `BASE_PATH`          | `/`               | App base path (use it if the app does not have run its dedicated domain name).                                     |
+| `DEBUG`              |                   | Whether the app runs in debug mode or not (basically just more logs).                                              |
+| `PORT`               | 8080              | Port on which app is running, **should not be changed**.                                                           |
+
+## Securing
+
+Keep in mind that Short{Paste} is not secured by any authentication, API key is not enough if Short{Paste} is exposed on the internet.
+
+Short{Paste} should run behind a reverse proxy (such as as `nginx-proxy-manager` or `trafeik`).
+Configure your reverse proxy to directly expose only `/l/*`, `/t/*` and `/f/*`. All other routes (most important `/api`) should wether not be exposed on the internet or with an authentication layer.
 
 ## Screenshots
 
 Here are some screenshots to get a taste of it, see the [demo](https://shortpaste.herokuapp.com/) for more :)
 
-| Type  |             Create              |                View                |
-| :---: | :-----------------------------: | :--------------------------------: |
-| Links | ![Link Upload](images/link.png) | ![Link View](images/link_link.png) |
-| Text  | ![Text Upload](images/text.png) | ![Text View](images/text_link.png) |
-| Files | ![File Upload](images/file.png) | ![File View](images/file_link.png) |
+| Type  |                      Create                      |                          View                         |
+| :---: | :----------------------------------------------: | :---------------------------------------------------: |
+| Links | ![Link Create](ressources/screenshots/links.png) |                                                       |
+| Text  | ![Text Create](ressources/screenshots/texts.png) | ![Text View](ressources/screenshots/text-preview.png) |
+| Files | ![File Create](ressources/screenshots/files.png) | ![File View](ressources/screenshots/file-preview.png) |
+
+## Development
+
+### Requirements
+
+* Golang version 1.19 minimum must be installed
+
+### Folder structure
+
+* Create a `data` folder at project root
+* Add a configuration file
+* :warning: while developing, you should not use a `base_path`
+
+### Running the server
+
+#### For server development
+
+Server will run on port `8781`:
+
+```bash
+cd server
+go run main.go
+```
+
+Alternatively, you can use `nodemon` to get server restart on file change:
+
+```bash
+npm i -g nodemon
+nodemon --exec go run main.go --signal SIGTERM
+```
+
+#### For front-end development
+
+You might want to run the server just to develop on the front.
+You can use previous method or use `Docker` to run it (and do not install all go environment etc).
+
+```
+docker build . -f Dockerfile.server -t shortpaste/server
+docker run -t -i --rm -p8080:8080 -v"$(pwd)/data:/app/data" -v"$(pwd)/server:/app/server" shortpaste/server
+```
+
+You should rebuild on update.
+
+### Running the front-end
+
+Front-end is developed in React. You need to have the server running.
+
+To run the front:
+
+```bash
+cd front
+npm i
+npm run start
+```
+
+Your web browser should open on `http://localhost:3000`. The app is configured to proxy the server for development purpose (ie. api is also reachable on `http://localhost:3000/api`).
+
+**Note:** if you set an API key in your configuration, you must set it when running front: `REACT_APP_API_KEY=<yourkey> npm run start`
+
+## TODO
+
+- [ ] move from sqlite3 to modernc.org/sqlite to compile without CGO (and use scratch, lighter image)
+- [ ] display status with version
+- [ ] allow user to change language
+- [ ] add all options in front when create a new text
+- [ ] error handling (on add and delete)
+- [ ] allow edit?
+- [ ] display text and file in frontend
+
+## Credits
+
+Short{Paste} is based on [Adyanth Hosavalike's Short{Paste}](https://github.com/adyanth/shortpaste) but have been nearly completely rewrittent.

@@ -1,0 +1,13 @@
+@import "src/theme/theme";
+
+.root {
+  max-height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: row;
+
+  background: $gray-100;
+  font-family: $main-font-family;
+  font-weight: 300;
+}

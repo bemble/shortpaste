@@ -1,0 +1,14 @@
+@import "./material_colors";
+@import "./spacing";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,300;1,400&display=swap");
+$main-font-family: "Montserrat", sans-serif;
+
+$spacing: 16px;
+$border-radius: 5px;
+$drawer-menu-width: 150px;
+$content-max-width: 600px;
+
+* {
+    box-sizing: border-box;
+}

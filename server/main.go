@@ -5,7 +5,9 @@ import (
 	"os"
 	"shortpaste/api"
 	"shortpaste/core/config"
+	"shortpaste/core/constants"
 	"shortpaste/core/database"
+	"shortpaste/core/tools/front"
 	"shortpaste/public"
 
 	nested "github.com/antonfisher/nested-logrus-formatter"
@@ -30,7 +32,11 @@ func init() {
 	dataDir := config.GetDataDirPath()
 	os.MkdirAll(dataDir, os.ModePerm)
 
-	database.Get()
+	// Init database
+	database.Init()
+
+	// Replace placeholders
+	front.ReplacePlaceHolders()
 }
 
 func main() {
@@ -44,9 +50,13 @@ func main() {
 	r.Use(middleware.Recoverer)
 
 	basePath := config.GetBasePath()
+	if basePath != "/" && basePath[len(basePath)-1] != '/' {
+		r.Get(basePath, http.RedirectHandler(basePath+"/", 301).ServeHTTP)
+		basePath += "/"
+	}
 
 	r.Route(basePath, public.Router)
-	r.Route(basePath+"api", api.Router)
+	r.Route(basePath+"api/v"+constants.API_VERSION, api.Router)
 
 	log.WithField("category", "general").Info("Server started: http://0.0.0.0:" + config.GetPort())
 

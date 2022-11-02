@@ -1,0 +1,11 @@
+@import "src/theme/theme";
+
+.root {
+    display: flex;
+    align-items: flex-end;
+    margin: spacing(1, 0);
+}
+
+.clear_button {
+    margin-right: spacing(0.25);
+}

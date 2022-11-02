@@ -1,0 +1,32 @@
+@import "src/theme/theme";
+
+.input_container {
+    max-width: $content-max-width;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    :global(.MuiInputBase-root) {
+        &::before, &::after {
+            border-bottom: none !important;
+        }
+        
+        label {
+            flex-grow: 1;
+        }
+    }
+}
+
+.add_button {
+    margin: spacing(0.5);
+    padding: spacing(0.5);
+
+    color: $blue-500;
+    background-color: $blue-50;
+
+    &:hover {
+        color: $blue-600;
+        background-color: $blue-100;
+    }
+}

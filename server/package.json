@@ -1,0 +1,7 @@
+{
+    "name": "shortpaste-server",
+    "private": true,
+    "scripts": {
+        "start": "nodemon --exec go run main.go --signal SIGTERM"
+    }
+}

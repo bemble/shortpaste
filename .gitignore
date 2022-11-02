@@ -1,4 +1,19 @@
-*.db
-static/
-data
-.vscode
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+!.vscode/*.code-workspace
+
+### Generic files ###
+.DS_Store
+
+### Packages ###
+.yarn
+node_modules/
+
+### Project specific files ###
+/public/
+data/

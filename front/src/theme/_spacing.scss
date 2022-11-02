@@ -1,0 +1,17 @@
+// Warning: Material UI default spacing is 8px, so when moving from JSS to scss, divide all spacing by 2
+$spacing-base: 16px;
+
+@function spacing($coefficient1: 1, $coefficient2: null, $coefficient3: null, $coefficient4: null) {
+    @if ($coefficient4 != null) {
+        @return ($spacing-base * $coefficient1) ($spacing-base * $coefficient2)
+            ($spacing-base * $coefficient3) ($spacing-base * $coefficient4);
+    }
+    @if ($coefficient3 != null) {
+        @return ($spacing-base * $coefficient1) ($spacing-base * $coefficient2)
+            ($spacing-base * $coefficient3);
+    }
+    @if ($coefficient2 != null) {
+        @return ($spacing-base * $coefficient1) ($spacing-base * $coefficient2);
+    }
+    @return $spacing-base * $coefficient1;
+}

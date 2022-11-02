@@ -1,0 +1,59 @@
+@import "src/theme/theme";
+
+.root {
+  font-weight: 400;
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.secondary {
+    font-size: 20px;
+    height: 69px;
+    width: 250px !important;
+    margin-bottom: 16px;
+    margin-left: -8px;
+    margin-right: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgb(209, 209, 209); 
+  }
+
+  .ColorIntro {
+    display: block;
+    width: $spacing/4;
+    height: 50px;
+    border-radius: $border-radius/2;
+    margin-right: $spacing/3;
+
+    &.pink {
+      background-color: $pink-400;
+    }
+
+    &.green {
+      background-color: $green-400;
+    }
+
+    &.blue {
+      background-color: $blue-400;
+    }
+
+    &.red {
+      background-color: $red-400;
+    }
+
+    &.purple {
+      background-color: $purple-400;
+    }
+
+    &.orange {
+      background-color: $orange-400;
+    }
+
+    &.yellow {
+      background-color: $yellow-700;
+    }
+  }
+}

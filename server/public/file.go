@@ -6,7 +6,7 @@ import (
 	"path"
 	"shortpaste/core/config"
 	"shortpaste/core/database"
-	"shortpaste/core/formatter"
+	"shortpaste/core/tools"
 	"strings"
 	"text/template"
 
@@ -55,7 +55,7 @@ func FileGet(w http.ResponseWriter, r *http.Request) {
 		Name:  file.Name,
 		Src:   "/f/" + id + "?download",
 		Image: strings.HasPrefix(file.MIME, "image/"),
-		Size:  formatter.IECFormat(fi.Size()),
+		Size:  tools.IECFormat(fi.Size()),
 	}
 	t.Execute(w, data)
 }

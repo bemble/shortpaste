@@ -1,0 +1,74 @@
+@import "src/theme/theme";
+
+.primary_info {
+    min-width: 115px;
+    width: auto !important;
+    margin-right: spacing(0.5);
+
+    & > *:first-child {
+        font-weight: bold;
+    }
+    & > *:last-child {
+        font-size: 0.8rem;
+        color: $gray-500;
+    }
+}
+
+:global(.MuiButtonBase-root).copy_button {
+    :global(.MuiSvgIcon-root) {
+        width: 16px;
+        height: 16px;
+    }
+
+    margin-right: spacing(0.5);
+    color: $purple-300;
+    background-color: $purple-50;
+
+    &:hover {
+        color: $purple-600;
+        background-color: $purple-100;
+    }
+}
+
+:global(.MuiButtonBase-root).delete_button {
+    :global(.MuiSvgIcon-root) {
+        width: 16px;
+        height: 16px;
+    }
+
+    color: $red-300;
+    background-color: $red-50;
+
+    &:hover {
+        color: $red-600;
+        background-color: $red-100;
+    }
+}
+
+.url {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    a {
+        text-decoration: none;
+        color: $blue-700;
+    }
+}
+
+.numbers {
+    display: flex;
+    align-items: center;
+
+    margin-top: spacing(0.25);
+    font-size: 0.8rem;
+    color: $gray-500;
+    font-family: monospace;
+
+    & svg {
+        width: 14px;
+        height: 14px;
+        margin-right: spacing(0.25);
+    }
+}

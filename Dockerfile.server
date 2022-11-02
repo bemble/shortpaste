@@ -1,0 +1,19 @@
+# Server build
+FROM golang:1.19-alpine
+
+RUN apk add --no-cache \
+    alpine-sdk \
+    ca-certificates \
+    tzdata
+
+# Force the go compiler to use modules
+ENV GO111MODULE=on
+ENV CGO_ENABLED=0
+ENV GOOS=linux
+
+ENV APP_VERSION=dev
+
+WORKDIR /app/server
+ENTRYPOINT ["go", "run", "main.go"]
+
+EXPOSE 8080

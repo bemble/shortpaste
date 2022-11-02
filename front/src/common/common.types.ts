@@ -1,0 +1,1 @@
+export type SectionColor = "pink" | "green" | "blue" | "red" | "purple" | "orange" | "yellow";

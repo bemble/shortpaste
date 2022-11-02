@@ -1,31 +1,37 @@
-FROM golang:alpine AS backend-build
+FROM golang:1.19-alpine as server-builder
 
-WORKDIR /usr/local/go/src/git.adyanth.site/adyanth/shortpaste/
+RUN apk add --no-cache \
+    alpine-sdk
 
-RUN apk add --no-cache make build-base
-COPY go.* ./
-RUN go mod download
+# Force the go compiler to use modules
+ENV GO111MODULE=on
 
-COPY *.go ./
-COPY cmd cmd
-COPY templates ./templates
-RUN CGO_ENABLED=1 go build -o /out/ ./...
+ADD . /app
+WORKDIR /app/server
+RUN CGO_ENABLED=1 GOOS=linux go build -a -o shortpaste .
 
-FROM node:lts-alpine as frontend-build
+FROM node:18-alpine as front-builder
 
-WORKDIR /ui/
+RUN apk add tzdata
 
-COPY ui/package*.json ./
-RUN npm install -g @vue/cli && npm install
-COPY ui ./
-RUN npm run build
+ADD . /app
+WORKDIR /app/front
+RUN npm ci install
+RUN CI=false GENERATE_SOURCEMAP=false npm run build:docker
 
+# Final image
 FROM alpine
 
-WORKDIR /usr/local/bin/shortpaste/
-COPY --from=backend-build /out/shortpaste .
-COPY --from=frontend-build /ui/dist/ static/
+RUN apk add --no-cache \
+    ca-certificates \
+    tzdata
+
+# copy front files
+COPY --from=front-builder /app/public /app/public
+
+# copy server files
+COPY --from=server-builder /app/server/shortpaste /app/server/shortpaste
+
+ENTRYPOINT ["/app/server/shortpaste"]
 
 EXPOSE 8080
-
-ENTRYPOINT [ "/usr/local/bin/shortpaste/shortpaste" ]

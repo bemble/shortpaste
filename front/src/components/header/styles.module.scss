@@ -1,0 +1,9 @@
+@import "src/theme/theme";
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing;
+  height: 70px;
+}

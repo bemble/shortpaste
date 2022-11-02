@@ -1,0 +1,25 @@
+{
+    "folders": [
+      {
+        "name": "Root",
+        "path": "../"
+      },
+      {
+        "name": "Front",
+        "path": "../front"
+      },
+      {
+        "name": "Server",
+        "path": "../server"
+      },
+    ],
+    "settings": {
+      "files.exclude": {
+        "front/": true,
+        "server/": true
+      },
+      "files.associations": {
+        "*.yaml": "home-assistant"
+      },
+    }
+  }

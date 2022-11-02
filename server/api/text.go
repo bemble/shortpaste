@@ -20,6 +20,16 @@ func TextsList(w http.ResponseWriter, r *http.Request) {
 	var texts []database.Text
 	db.Find(&texts)
 
+	for i := range texts {
+		text := texts[i]
+		filePath := path.Join(config.GetDataDirPath(), "texts", text.ID+"."+text.Type)
+		textContent, err := ioutil.ReadFile(filePath)
+		if err != nil {
+			text.Text = ""
+		}
+		texts[i].Text = string(textContent)
+	}
+
 	body, _ := json.Marshal(texts)
 	w.Write(body)
 }

@@ -8,7 +8,7 @@ import (
 	"path"
 	"shortpaste/core/config"
 	"shortpaste/core/database"
-	"shortpaste/core/formatter"
+	"shortpaste/core/tools"
 	"text/template"
 
 	"github.com/go-chi/chi/v5"
@@ -71,7 +71,7 @@ func TextGet(w http.ResponseWriter, r *http.Request) {
 		Name:  text.ID + "." + text.Type,
 		Src:   "/t/" + id + "?download",
 		Text:  html.EscapeString(string(textContent)),
-		Size:  formatter.IECFormat(fi.Size()),
+		Size:  tools.IECFormat(fi.Size()),
 	}
 	t.Execute(w, data)
 }

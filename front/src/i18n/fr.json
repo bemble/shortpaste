@@ -1,0 +1,40 @@
+{
+  "menu": {
+    "links": "Liens",
+    "texts": "Textes",
+    "files": "Fichiers"
+  },
+  "titles": {
+    "links": "Liens",
+    "texts": "Textes",
+    "files": "Fichiers"
+  },
+  "links": {
+    "add_placeholder": "Entrez l'URL à raccourcir",
+    "add_aria_label": "raccourcir une nouvelle URL",
+    "add_button_aria_label": "ajouter",
+    "copy_button_aria_label": "copier l'URL raccourcie",
+    "delete_button_aria_label": "supprimer",
+    "open_original": "ouvrir le lien original",
+    "copy_message": "URL raccourcie copiée dans le presse-papier"
+  },
+  "texts": {
+    "add_placeholder": "Entrez votre texte",
+    "add_aria_label": "ajouter le texte",
+    "add_button_aria_label": "ajouter",
+    "copy_button_aria_label": "copier le lien vers le texte",
+    "delete_button_aria_label": "supprimer",
+    "copy_message": "Lien vers le texte copié dans le presse-papier"
+  },
+  "files": {
+    "add_placeholder": "Sélectionnez votre fichier",
+    "add_button_aria_label": "envoyer",
+    "copy_button_aria_label": "copier le lien vers le fichier",
+    "delete_button_aria_label": "supprimer",
+    "copy_message": "Lien vers le fichier copié dans le presse-papier"
+  },
+  "actions": {
+    "filter": "Filtrer",
+    "clear_filter_label": "effacer les filtres"
+  }
+}
