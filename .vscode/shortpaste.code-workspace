@@ -19,6 +19,7 @@
         "server/": true
       },
       "files.associations": {
+        "*.yaml": "home-assistant"
       },
     }
   }
