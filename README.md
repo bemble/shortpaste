@@ -28,7 +28,7 @@ docker run -v "${pwd}/shortpaste/data:/app/data" -p8080:8080 --env-file "${pwd}/
 ```yml
   shortpaste:
     image: ghcr.io/bemble/shortpaste:latest 
-    container_name: holerr
+    container_name: shortpaste
     restart: unless-stopped
     ports:
       - ${PORT_SHORTPASTE}:8080
