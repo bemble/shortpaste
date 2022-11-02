@@ -29,10 +29,10 @@ jobs:
         id: go
 
       - name: Get dependencies
-        run: go mod download
+        run: cd server && go mod download
 
       - name: Test
-        run: go test -v ./...
+        run: cd server && go test -v ./...
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
