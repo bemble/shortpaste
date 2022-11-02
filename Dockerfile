@@ -1,4 +1,4 @@
-FROM golang:1.19-alpine as server-builder
+FROM --platform=$BUILDPLATFORM golang:1.19-alpine as server-builder
 
 RUN apk add --no-cache \
     alpine-sdk \
@@ -10,7 +10,12 @@ ENV GO111MODULE=on
 
 ADD . /app
 WORKDIR /app/server
-RUN CGO_ENABLED=0 GOOS=linux go build -a -o shortpaste .
+RUN go mod download
+
+ARG TARGETOS TARGETARCH
+RUN --mount=type=cache,target=/root/.cache/go-build \
+    --mount=type=cache,target=/go/pkg \
+    CGO_ENABLED=0 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -o shortpaste .
 
 FROM node:18-alpine as front-builder
 
@@ -18,8 +23,9 @@ RUN apk add tzdata
 
 ADD . /app
 WORKDIR /app/front
-RUN npm ci install
-RUN CI=false GENERATE_SOURCEMAP=false npm run build:docker
+# run only if public folder does not already exists
+RUN [[ -d /app/public ]] || npm ci install
+RUN [[ -d /app/public ]] || CI=false GENERATE_SOURCEMAP=false npm run build:docker
 
 # Final image
 FROM scratch

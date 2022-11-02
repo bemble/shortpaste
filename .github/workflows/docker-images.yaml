@@ -71,6 +71,17 @@ jobs:
             echo "::set-output name=app-version::${{ github.sha }}"
           fi
 
+      - name: Use NodeJS 18.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.x
+
+      - name: Build front
+        run: |
+          cd front
+          npm ci install
+          CI=false GENERATE_SOURCEMAP=false npm run build:docker
+
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2

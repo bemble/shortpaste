@@ -40,6 +40,14 @@ docker run -v "${pwd}/shortpaste/data:/app/data" -p8080:8080 --env-file "${pwd}/
       - /etc/localtime:/etc/localtime:ro
 ```
 
+
+### Build docker image
+
+```bash
+rm -rf public
+docker build . -t shortpaste
+```
+
 ## Environment Variables
 
 You can customize the behavior using environment variables:.
@@ -67,6 +75,7 @@ Here are some screenshots to get a taste of it:
 | Links | ![Link Create](ressources/screenshots/links.png) |                                                       |
 | Text  | ![Text Create](ressources/screenshots/texts.png) | ![Text View](ressources/screenshots/text-preview.png) |
 | Files | ![File Create](ressources/screenshots/files.png) | ![File View](ressources/screenshots/file-preview.png) |
+
 
 ## Development
 
@@ -104,8 +113,8 @@ You might want to run the server just to develop on the front.
 You can use previous method or use `Docker` to run it (and do not install all go environment etc).
 
 ```
-docker build . -f Dockerfile.server -t shortpaste/server
-docker run -t -i --rm -p8080:8080 -v"$(pwd)/data:/app/data" -v"$(pwd)/server:/app/server" shortpaste/server
+docker build . -f server/Dockerfile.dev -t shortpaste/dev-server
+docker run -t -i --rm -p8080:8080 -v"$(pwd)/data:/app/data" -v"$(pwd)/server:/app/server" shortpaste/dev-server
 ```
 
 You should rebuild on update.
@@ -128,6 +137,7 @@ Your web browser should open on `http://localhost:3000`. The app is configured t
 
 ## TODO
 
+- [ ] optimize build
 - [ ] allow user to set the public url for shortened content
 - [x] move from sqlite3 to modernc.org/sqlite to compile without CGO (and use scratch, lighter image)
 - [ ] display status with version
