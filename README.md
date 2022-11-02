@@ -60,7 +60,7 @@ Configure your reverse proxy to directly expose only `/l/*`, `/t/*` and `/f/*`. 
 
 ## Screenshots
 
-Here are some screenshots to get a taste of it, see the [demo](https://shortpaste.herokuapp.com/) for more :)
+Here are some screenshots to get a taste of it:
 
 | Type  |                      Create                      |                          View                         |
 | :---: | :----------------------------------------------: | :---------------------------------------------------: |
@@ -128,7 +128,8 @@ Your web browser should open on `http://localhost:3000`. The app is configured t
 
 ## TODO
 
-- [ ] move from sqlite3 to modernc.org/sqlite to compile without CGO (and use scratch, lighter image)
+- [ ] allow user to set the public url for shortened content
+- [x] move from sqlite3 to modernc.org/sqlite to compile without CGO (and use scratch, lighter image)
 - [ ] display status with version
 - [ ] allow user to change language
 - [ ] add all options in front when create a new text
