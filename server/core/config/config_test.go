@@ -11,7 +11,7 @@ func TestGetAppDirPath(t *testing.T) {
 
 	expectedDir, _ := os.Getwd()
 
-	if expectedDir != fmt.Sprintf("%s/core/config", dir) {
+	if expectedDir != fmt.Sprintf("%s/server/core/config", dir) {
 		t.Fatalf("Expected path %s, but got %s", expectedDir, dir)
 	}
 }

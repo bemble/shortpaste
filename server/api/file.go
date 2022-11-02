@@ -8,6 +8,7 @@ import (
 	"path"
 	"shortpaste/core/config"
 	"shortpaste/core/database"
+	"shortpaste/core/tools"
 
 	"github.com/go-chi/chi/v5"
 	log "github.com/sirupsen/logrus"
@@ -55,9 +56,9 @@ func FileAdd(w http.ResponseWriter, r *http.Request) {
 	file.Name = handler.Filename
 	file.MIME = handler.Header["Content-Type"][0]
 
-	log.WithField("category", "file-upload").Info("Uploaded File: %+v\n", file.Name)
-	log.WithField("category", "file-upload").Info("File Size: %+v\n", handler.Size)
-	log.WithField("category", "file-upload").Info("MIME Header: %+v\n", file.MIME)
+	log.WithField("category", "file-upload").Info("Uploaded File: " + file.Name)
+	log.WithField("category", "file-upload").Info("File Size: " + tools.IECFormat(handler.Size))
+	log.WithField("category", "file-upload").Info("MIME Header: " + file.MIME)
 
 	filePath := path.Join(config.GetDataDirPath(), "files", file.ID, file.Name)
 
