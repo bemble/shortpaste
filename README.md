@@ -94,7 +94,7 @@ Here are some screenshots to get a taste of it:
 
 #### For server development
 
-Server will run on port `8781`:
+Server will run on port `8080`:
 
 ```bash
 cd server
