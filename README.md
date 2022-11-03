@@ -141,7 +141,7 @@ Your web browser should open on `http://localhost:3000`. The app is configured t
 - [x] optimize build time
 - [x] allow user to set the public url for shortened content
 - [x] move from sqlite3 to modernc.org/sqlite to compile without CGO (and use scratch, lighter image)
-- [ ] display status with version
+- [x] display status with version
 - [ ] allow user to change language
 - [ ] add all options in front when create a new text
 - [ ] error handling (on add and delete)

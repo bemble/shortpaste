@@ -31,12 +31,13 @@ function App() {
       <ThemeProvider theme={theme}>
         <AppContext.Provider value={appContextValue}>
           <div className={classes.root}>
-            {!isLoading ? <><MainMenu />
-            <Content>
-              <Route path="/" element={<Links />} />
-              <Route path="/texts" element={<Texts />} />
-              <Route path="/files" element={<Files />} />
-            </Content>
+            {!isLoading ? <>
+              <MainMenu />
+              <Content>
+                <Route path="/" element={<Links />} />
+                <Route path="/texts" element={<Texts />} />
+                <Route path="/files" element={<Files />} />
+              </Content>
             </> : null}
           </div>
         </AppContext.Provider>
