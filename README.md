@@ -1,4 +1,4 @@
-# Short{Paste}
+# ShortPaste
 
 [![gh_last_release_svg]][gh_last_release_url]
 [![tippin_svg]][tippin_url]
@@ -11,7 +11,7 @@
 
 > A lightweight personnal URL shortener, pastebin and file uploader.
 
-Short{Paste} is open-source software written in Go and React. It is a minimalistic shortener that combines three things that need shortening: links, files, and text. It is a self-hosted alternative to many popular services like bitly, paste bin and using dropbox to send a file to someone quickly.
+ShortPaste is open-source software written in Go and React. It is a minimalistic shortener that combines three things that need shortening: links, files, and text. It is a self-hosted alternative to many popular services like bitly, paste bin and using dropbox to send a file to someone quickly.
 
 The Go backend handles saving files, links, and text in DB and filesystem as needed, while the React UI provides a pretty view for you to add and review content. Added bonus, it tracks hit counts too!
 
@@ -62,9 +62,9 @@ You can customize the behavior using environment variables:.
 
 ## Securing
 
-Keep in mind that Short{Paste} is not secured by any authentication, API key is not enough if Short{Paste} is exposed on the internet.
+Keep in mind that ShortPaste is not secured by any authentication, API key is not enough if ShortPaste is exposed on the internet.
 
-Short{Paste} should run behind a reverse proxy (such as as `nginx-proxy-manager` or `trafeik`).
+ShortPaste should run behind a reverse proxy (such as as `nginx-proxy-manager` or `trafeik`).
 Configure your reverse proxy to directly expose only `/l/*`, `/t/*` and `/f/*`. All other routes (most important `/api`) should wether not be exposed on the internet or with an authentication layer.
 
 ## Screenshots
@@ -150,4 +150,4 @@ Your web browser should open on `http://localhost:3000`. The app is configured t
 
 ## Credits
 
-Short{Paste} is based on [Adyanth Hosavalike's Short{Paste}](https://github.com/adyanth/shortpaste) but have been nearly completely rewrittent.
+ShortPaste is based on [Adyanth Hosavalike's ShortPaste](https://github.com/adyanth/shortpaste) but have been nearly completely rewrittent.

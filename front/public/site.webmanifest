@@ -1,6 +1,6 @@
 {
-    "name": "Short{Paste}",
-    "short_name": "Short{Paste}",
+    "name": "ShortPaste",
+    "short_name": "ShortPaste",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
