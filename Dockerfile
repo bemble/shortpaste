@@ -30,6 +30,9 @@ RUN [[ -d /app/public ]] || CI=false GENERATE_SOURCEMAP=false npm run build:dock
 # Final image
 FROM scratch
 
+ARG APP_VERSION
+ENV APP_VERSION=${APP_VERSION}
+
 # copy front files
 COPY --from=front-builder /app/public /app/public
 

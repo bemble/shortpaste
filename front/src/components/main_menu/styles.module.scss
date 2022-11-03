@@ -41,4 +41,25 @@
   .spacer {
     flex-grow: 1;
   }
+
+  .info {
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+    font-size: 12px;
+    color: $gray-400;
+  }
+
+  .status {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: $red-400;
+
+
+    &.up {
+      background: $green-400;
+    }
+  }
 }
