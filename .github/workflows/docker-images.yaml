@@ -31,7 +31,7 @@ jobs:
       - name: Get dependencies
         run: cd server && go mod download
 
-      - name: Test
+      - name: Run tests
         run: cd server && go test -v ./...
 
       - name: Login to DockerHub
