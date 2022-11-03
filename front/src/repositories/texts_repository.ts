@@ -24,6 +24,6 @@ export default class TextsRepository {
   }
 
   static getShortURL(t: ShortPasteText): string {
-    return `${config.baseURL}/t/${t.id}`;
+    return `${config.shortenURL}/t/${t.id}`;
   }
 }

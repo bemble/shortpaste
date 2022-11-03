@@ -24,6 +24,6 @@ export default class FilesRepository {
   }
 
   static getShortURL(f: ShortPasteFile): string {
-    return `${config.baseURL}/f/${f.id}`;
+    return `${config.shortenURL}/f/${f.id}`;
   }
 }

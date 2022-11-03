@@ -1,4 +1,6 @@
 export default class Config {
+  static domain: string = "";
+
   static get apiKey(): string {
     return process.env.REACT_APP_API_KEY || "%shortpaste-api-key-placeholder%";
   }
@@ -18,5 +20,12 @@ export default class Config {
       baseURL = "";
     }
     return `${window.location.origin}${baseURL}`;
+  }
+
+  static get shortenURL(): string {
+    if (this.domain !== "") {
+      return this.domain;
+    }
+    return this.baseURL;
   }
 }

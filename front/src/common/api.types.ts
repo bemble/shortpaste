@@ -1,6 +1,10 @@
-export type Status = {
-  status: "up";
+export type Config = {
+  domain: string;
   version: string;
+};
+
+export type Status = {
+  status: "up" | "down";
 };
 
 export type Link = {

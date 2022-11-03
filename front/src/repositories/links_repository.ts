@@ -24,6 +24,6 @@ export default class LinksRepository {
   }
 
   static getShortURL(l: ShortPasteLink): string {
-    return `${config.baseURL}/l/${l.id}`;
+    return `${config.shortenURL}/l/${l.id}`;
   }
 }

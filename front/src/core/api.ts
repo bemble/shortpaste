@@ -4,6 +4,7 @@ import {
   Text as ShortPasteText,
   File as ShortPasteFile,
   Status,
+  Config,
 } from "../common/api.types";
 import config from "./config";
 
@@ -78,6 +79,10 @@ class Api {
 
   public getStatus(): Promise<AxiosResponse<Status>> {
     return this._axiosInstance.get<Status>("/status");
+  }
+
+  public getConfig(): Promise<AxiosResponse<Config>> {
+    return this._axiosInstance.get<Config>("/config");
   }
 }
 

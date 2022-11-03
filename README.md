@@ -52,12 +52,13 @@ docker build . -t shortpaste
 
 You can customize the behavior using environment variables:.
 
-| Environment Variable | Default Value     | Behaviour                                                                                                          |
-| -------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `API_KEY`            | `CHANGE-IT-ASAP`  | API key used to communicate with the API.                                                                          |
-| `BASE_PATH`          | `/`               | App base path (use it if the app does not have run its dedicated domain name).                                     |
-| `DEBUG`              |                   | Whether the app runs in debug mode or not (basically just more logs).                                              |
-| `PORT`               | 8080              | Port on which app is running, **should not be changed**.                                                           |
+| Environment Variable | Default Value    | Behaviour                                                                                                                     |
+| -------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `API_KEY`            | `CHANGE-IT-ASAP` | API key used to communicate with the API.                                                                                     |
+| `BASE_PATH`          | `/`              | App base path (use it if the app does not have run its dedicated domain name).                                                |
+| `DOMAIN`             |                  | Override shortened URL domain in front, when copy to clipboard (default is the actual page domain). Example: `https://sho.rt` |
+| `DEBUG`              |                  | Whether the app runs in debug mode or not (basically just more logs).                                                         |
+| `PORT`               | 8080             | Port on which app is running, **should not be changed**.                                                                      |
 
 ## Securing
 
@@ -137,8 +138,8 @@ Your web browser should open on `http://localhost:3000`. The app is configured t
 
 ## TODO
 
-- [ ] optimize build
-- [ ] allow user to set the public url for shortened content
+- [x] optimize build time
+- [x] allow user to set the public url for shortened content
 - [x] move from sqlite3 to modernc.org/sqlite to compile without CGO (and use scratch, lighter image)
 - [ ] display status with version
 - [ ] allow user to change language

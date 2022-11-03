@@ -9,6 +9,9 @@ func Router(r chi.Router) {
 	r.Use(middleware.SetHeader("Content-Type", "application/json"))
 	r.Use(CheckApiKey)
 
+	r.Get(`/config`, ConfigList)
+	r.Get(`/status`, StatusList)
+
 	r.Get(`/links`, LinksList)
 	r.Post(`/links`, LinkAdd)
 	r.Delete(`/links/{id}`, LinkDelete)

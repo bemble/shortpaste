@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build container
+    name: Build image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,13 +35,13 @@ jobs:
         run: cd server && go test -v ./...
 
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.HUB_TOKEN }}
 
       - name: Log in to ghcr.io
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
@@ -82,7 +82,7 @@ jobs:
           npm ci install
           CI=false GENERATE_SOURCEMAP=false npm run build:docker
 
-      - name: Build and push
+      - name: Build docker image and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
