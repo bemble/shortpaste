@@ -5,7 +5,7 @@ import (
 	"path"
 	"shortpaste/core/config"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 
 	"github.com/glebarez/sqlite"
 	"gorm.io/gorm"
@@ -20,7 +20,7 @@ func Init() {
 
 func Get() *gorm.DB {
 	if !isInited() {
-		log.WithField("category", "database").Info("Initing...")
+		logrus.WithField("category", "database").Info("Initing...")
 
 		dbUri := path.Join(config.GetDataDirPath(), "mapping.db")
 		ndb, err := gorm.Open(sqlite.Open(dbUri), &gorm.Config{})
@@ -28,7 +28,7 @@ func Get() *gorm.DB {
 			panic(fmt.Errorf("db error %v", err))
 		}
 		if err != nil {
-			log.Fatal(err)
+			logrus.Fatal(err)
 		}
 		db = ndb
 
@@ -43,7 +43,7 @@ func isInited() bool {
 }
 
 func migrate() {
-	log.WithField("category", "database").Info("Migrating...")
+	logrus.WithField("category", "database").Info("Migrating...")
 	db.AutoMigrate(&Link{})
 	db.AutoMigrate(&File{})
 	db.AutoMigrate(&Text{})
