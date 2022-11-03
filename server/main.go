@@ -11,20 +11,20 @@ import (
 	"shortpaste/public"
 
 	nested "github.com/antonfisher/nested-logrus-formatter"
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
 
 func init() {
-	logLevel := log.InfoLevel
+	logLevel := logrus.InfoLevel
 	if config.IsDebug() {
-		logLevel = log.DebugLevel
+		logLevel = logrus.DebugLevel
 	}
 
-	log.SetLevel(logLevel)
-	log.SetFormatter(&nested.Formatter{
+	logrus.SetLevel(logLevel)
+	logrus.SetFormatter(&nested.Formatter{
 		HideKeys:    true,
 		FieldsOrder: []string{"component", "category"},
 	})
@@ -58,7 +58,7 @@ func main() {
 	r.Route(basePath, public.Router)
 	r.Route(basePath+"api/v"+constants.API_VERSION, api.Router)
 
-	log.WithField("category", "general").Info("Server started: http://0.0.0.0:" + config.GetPort())
+	logrus.WithField("category", "general").Info("Server started: http://0.0.0.0:" + config.GetPort())
 
-	log.Fatal(http.ListenAndServe(":"+config.GetPort(), r))
+	logrus.Fatal(http.ListenAndServe(":"+config.GetPort(), r))
 }

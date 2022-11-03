@@ -7,7 +7,7 @@ import (
 	"shortpaste/core/tools/file"
 	"strings"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 var replacers map[string]Replacer = map[string]Replacer{}
@@ -18,7 +18,7 @@ func SetReplacer(replacer Replacer) {
 
 func ReplaceInFiles(rootDirectory string) {
 	if _, err := os.Stat(rootDirectory); os.IsNotExist(err) {
-		log.WithField("category", "placeholders").Warn(rootDirectory + " not found.")
+		logrus.WithField("category", "placeholders").Warn(rootDirectory + " not found.")
 		return
 	}
 
@@ -33,7 +33,7 @@ func ReplaceInFiles(rootDirectory string) {
 			return nil
 		})
 	if err != nil {
-		log.WithField("category", "placeholders").Fatal(err)
+		logrus.WithField("category", "placeholders").Fatal(err)
 	}
 
 	err = filepath.Walk(rootDirectory,
@@ -50,14 +50,14 @@ func ReplaceInFiles(rootDirectory string) {
 			return nil
 		})
 	if err != nil {
-		log.WithField("category", "placeholders").Fatal(err)
+		logrus.WithField("category", "placeholders").Fatal(err)
 	}
 }
 
 func containsPlaceHolders(path string) bool {
 	b, err := ioutil.ReadFile(path)
 	if err != nil {
-		log.Fatal(err)
+		logrus.Fatal(err)
 	}
 	contains := false
 	for _, replacer := range replacers {
@@ -70,7 +70,7 @@ func containsPlaceHolders(path string) bool {
 func replacePlaceHolders(path string) error {
 	b, err := ioutil.ReadFile(path)
 	if err != nil {
-		log.Fatal(err)
+		logrus.Fatal(err)
 	}
 
 	result := string(b)

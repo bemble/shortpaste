@@ -24,9 +24,13 @@ func FileGet(w http.ResponseWriter, r *http.Request) {
 	}
 
 	filePath := path.Join(config.GetDataDirPath(), "files", file.ID, file.Name)
-	if _, ok := r.URL.Query()["download"]; ok {
-		file.DownloadCount += 1
-		db.Save(&file)
+	_, isDownload := r.URL.Query()["download"]
+	_, isView := r.URL.Query()["view"]
+	if isDownload || isView {
+		if isDownload {
+			file.DownloadCount += 1
+			db.Save(&file)
+		}
 
 		w.Header().Set("Content-Disposition", "attachment; filename="+file.Name)
 		http.ServeFile(w, r, filePath)
@@ -53,7 +57,7 @@ func FileGet(w http.ResponseWriter, r *http.Request) {
 		Size  string
 	}{
 		Name:  file.Name,
-		Src:   "/f/" + id + "?download",
+		Src:   "/f/" + id + "?view",
 		Image: strings.HasPrefix(file.MIME, "image/"),
 		Size:  tools.IECFormat(fi.Size()),
 	}
