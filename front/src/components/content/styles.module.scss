@@ -2,18 +2,16 @@
 
 .root {
   flex: 1;
-  
-  display: flex;
-  flex-direction: column;
 
-  height: calc(100vh - 64px - env(safe-area-inset-bottom));
-  margin-left: 0;
+  min-height: calc(100vh - 68px - env(safe-area-inset-bottom));
+
   z-index: 2;
   padding: $spacing;
   overflow-y: auto;
+  padding-bottom: calc(68px + $spacing + env(safe-area-inset-bottom));
 
   @media (min-width: 899px) {
     margin-left: $drawer-menu-width;
-    height: calc(100vh - env(safe-area-inset-bottom));
+    margin-bottom: 0;
   }
 }
