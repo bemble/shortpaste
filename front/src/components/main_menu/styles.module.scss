@@ -3,6 +3,7 @@
 
 .root_bottom {
   background-color: $white !important;
+  padding-bottom: env(safe-area-inset-bottom) !important;
 
   :global(.MuiToolbar-root) {
     a {
