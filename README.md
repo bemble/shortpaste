@@ -150,4 +150,4 @@ Your web browser should open on `http://localhost:3000`. The app is configured t
 
 ## Credits
 
-ShortPaste is based on [Adyanth Hosavalike's ShortPaste](https://github.com/adyanth/shortpaste) but have been nearly completely rewrittent.
+ShortPaste is based on [Adyanth Hosavalike's Short{Paste}](https://github.com/adyanth/shortpaste).
