@@ -2,9 +2,10 @@ import { Box, IconButton, InputBase, Paper } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import classes from "./styles.module.scss";
 import {AddLink as AddLinkIcon} from "@mui/icons-material";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
 import { Link as ShortLink } from "../../../common/data.types";
 import { linksRepository } from "../../../repositories";
+import CopyToClipboard from "react-copy-to-clipboard";
 
 type AddLinkProps = {
     onAdd: (l: ShortLink) => void
@@ -12,9 +13,12 @@ type AddLinkProps = {
 
 const AddLink:React.FC<AddLinkProps> = ({onAdd}) => {
     const [url, setURL] = useState("");
+    const [shortURL, setShortURL] = useState<string>("");
     const [isValid, setIsValid] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const {t} = useTranslation();
+
+    const shortRef = useRef<any>();
 
     const handleChangeUrl = (e:ChangeEvent<HTMLInputElement>) => {
         setURL(e.target.value);
@@ -26,7 +30,9 @@ const AddLink:React.FC<AddLinkProps> = ({onAdd}) => {
 
         setIsLoading(true);
         
-        const link = await linksRepository.add({link: url});
+        const link = await linksRepository.add({link: url.trim()});
+        setShortURL(link.short_url);
+
         onAdd(link);
 
         setURL("");

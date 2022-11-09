@@ -23,8 +23,6 @@ const Links:React.FC = () => {
 
     const handleTextAdded = (t:ShortText) => {
         setTexts({...texts, [t.id]: t});
-        copy(t.short_url);
-        setDisplayCopySnack(true);
     };
 
     const handleTextDeleted = (id:string) => {

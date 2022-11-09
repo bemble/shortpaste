@@ -23,8 +23,6 @@ const Links:React.FC = () => {
 
     const handleFileAdded = (f:ShortFile) => {
         setFiles({...files, [f.id]: f});
-        copy(f.short_url);
-        setDisplayCopySnack(true);
     };
 
     const handleFileDeleted = (id:string) => {

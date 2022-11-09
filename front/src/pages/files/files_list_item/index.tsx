@@ -38,7 +38,7 @@ const TextsListItem:React.FC<TextsListItemProps> = ({file, onDelete, onShortened
             <Grid alignItems="center" container direction="row" flexWrap="nowrap">
                 <Grid className={classes.primary_info} container direction="column">
                     <Grid>
-                        <CopyToClipboard text={file.short_url} onCopy={onShortenedURLCopied}>
+                        <CopyToClipboard text={file.short_url} onCopy={onShortenedURLCopied} options={{format: "text/plain"}}>
                             <IconButton className={classes.copy_button} aria-label={t("files.copy_button_aria_label")} disabled={isDisabled}>
                                 <ContentCopyIcon />
                             </IconButton>

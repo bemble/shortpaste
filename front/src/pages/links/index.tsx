@@ -23,8 +23,6 @@ const Links:React.FC = () => {
 
     const handleLinkAdded = (l:ShortLink) => {
         setLinks({...links, [l.id]: l});
-        copy(l.short_url);
-        setDisplayCopySnack(true);
     };
 
     const handleLinkDeleted = (id:string) => {

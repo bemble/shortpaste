@@ -38,7 +38,7 @@ const LinksListItem:React.FC<LinksListItemProps> = ({link, onDelete, onShortened
             <Grid alignItems="center" container direction="row" flexWrap="nowrap">
                 <Grid className={classes.primary_info} container direction="column">
                     <Grid>
-                        <CopyToClipboard text={link.short_url} onCopy={onShortenedURLCopied}>
+                        <CopyToClipboard text={link.short_url} onCopy={onShortenedURLCopied} options={{format: "text/plain"}}>
                             <IconButton className={classes.copy_button} aria-label={t("links.copy_button_aria_label")} disabled={isDisabled}>
                                 <ContentCopyIcon />
                             </IconButton>
