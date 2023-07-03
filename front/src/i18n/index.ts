@@ -4,10 +4,12 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import en from "./en.json";
 import fr from "./fr.json";
+import zh from "./zh.json";
 
 const resources = {
     en: { translation: en },
-    fr: { translation: fr }
+    fr: { translation: fr },
+    "zh-CN": { translation: zh }
 };
 
 i18n.use(LanguageDetector)

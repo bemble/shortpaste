@@ -1,0 +1,40 @@
+{
+    "menu": {
+      "links": "链接",
+      "texts": "文本",
+      "files": "文件"
+    },
+    "titles": {
+      "links": "链接",
+      "texts": "文本",
+      "files": "文件"
+    },
+    "links": {
+      "add_placeholder": "输出希望缩短的URL",
+      "add_aria_label": "缩短新的URL",
+      "add_button_aria_label": "添加",
+      "copy_button_aria_label": "拷贝短URL",
+      "delete_button_aria_label": "删除",
+      "open_original": "打开原始链接",
+      "copy_message": "短链接已拷贝至剪切板"
+    },
+    "texts": {
+      "add_placeholder": "输入文本",
+      "add_aria_label": "添加文本",
+      "add_button_aria_label": "添加",
+      "copy_button_aria_label": "拷贝文本链接",
+      "delete_button_aria_label": "删除",
+      "copy_message": "短链接已拷贝至剪切板"
+    },
+    "files": {
+      "add_placeholder": "选择文件",
+      "add_button_aria_label": "上传",
+      "copy_button_aria_label": "拷贝文件链接",
+      "delete_button_aria_label": "删除",
+      "copy_message": "短链接已拷贝至剪切板"
+    },
+    "actions": {
+      "filter": "过滤器",
+      "clear_filter_label": "清空过滤器"
+    }
+  }
